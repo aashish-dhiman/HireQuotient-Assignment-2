@@ -204,20 +204,21 @@ const DataTable = () => {
     useEffect(() => {
         fetchData();
     }, []);
-const handleSelectTenRows = () => {
-    // Get the first 10 rows on the current page
-    const rowsOnCurrentPage = Rows.slice(0, 10);
 
-    // Extract the IDs of the selected rows
-    const selectedRowIds = rowsOnCurrentPage.map((row) => row.id);
+    const handleSelectTenRows = () => {
+        // Get the first 10 rows on the current page
+        const rowsOnCurrentPage = Rows.slice(0, 10);
 
-    // Set the selection model to the IDs of the first 10 rows
-    setSelectionModel(selectedRowIds);
-};
+        // Extract the IDs of the selected rows
+        const selectedRowIds = rowsOnCurrentPage.map((row) => row.id);
 
-const CustomHeaderCheckbox = () => (
-    <input type="checkbox" onChange={handleSelectTenRows} />
-);
+        // Set the selection model to the IDs of the first 10 rows
+        setSelectionModel(selectedRowIds);
+    };
+
+    const CustomHeaderCheckbox = () => (
+        <input type="checkbox" onChange={handleSelectTenRows} />
+    );
     return (
         <div className="relative md:p-1">
             <Button
@@ -228,12 +229,13 @@ const CustomHeaderCheckbox = () => (
                     position: "absolute",
                     left: "15px",
                     top: "10px",
+                    zIndex: 2,
                 }}
                 onClick={deleteSelectedRows}
             >
                 Delete {selectionModel.length} rows
             </Button>
-            <div className="w-full min-h-screen p-2">
+            <div className="w-full min-h-screen mt-2">
                 <DataGrid
                     rows={Rows}
                     columns={columns}
